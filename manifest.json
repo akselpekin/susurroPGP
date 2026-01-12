@@ -1,0 +1,26 @@
+{
+  "name": "susurroPGP",
+  "short_name": "susurro",
+  "start_url": "./index.html",
+  "scope": "./",
+  "id": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F2F2F7",
+  "theme_color": "#F2F2F7",
+  "description": "Lightweight PGP application.",
+  "icons": [
+    {
+      "src": "assets/icons/icon-1024x1024.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-1024x1024.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

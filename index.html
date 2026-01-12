@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- "Three may keep a secret if two of them are dead."  -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>susurroPGP</title>
+    
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://unpkg.com; worker-src 'self' blob:;">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="assets/icons/icon-1024x1024.png">
+    <meta name="theme-color" content="#F2F2F7">
+    <link rel="apple-touch-icon" href="assets/icons/icon-1024x1024.png">
+
+    <!-- Dependencies -->
+    <script src="https://unpkg.com/idb@8.0.0/build/umd.js"></script>
+    <script src="https://unpkg.com/openpgp@5.11.2/dist/openpgp.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>susurroPGP</h1>
+        <div id="app-mode" class="mode-badge">Loading...</div>
+    </header>
+    
+    <div id="status-message"></div>
+
+    <main>
+        <div class="nav-tabs">
+            <div class="nav-tab active" data-target="encrypt-section">Encrypt/Decrypt</div>
+            <div class="nav-tab" data-target="keys-section">Keys</div>
+            <div class="nav-tab" data-target="settings-section">Settings</div>
+        </div>
+
+        <!-- Encrypt/Decrypt -->
+        <section id="encrypt-section">
+            <div class="card">
+                <label for="message-input">Message Block</label>
+                <textarea id="message-input" rows="6" placeholder="Enter text to encrypt or PGP message to decrypt..."></textarea>
+                
+                <label for="recipient-key">Recipient Public Key</label>
+                <textarea id="recipient-key" rows="3" placeholder="Public Key here..."></textarea>
+
+                <div style="display: flex; gap: 10px; margin-bottom: 1rem;">
+                    <button id="btn-encrypt" style="margin-bottom: 0;">Encrypt</button>
+                </div>
+                
+                <div style="height: 1px; background-color: var(--border-color); margin: 1.5rem 0;"></div>
+
+                <label for="decrypt-key-select">Decrypt using Private Key</label>
+                <div style="display: flex; gap: 10px;">
+                     <select id="decrypt-key-select" style="flex: 2; margin-bottom: 0px; border-radius: 10px; border: 1px solid var(--border-color); background-color: #F8F8FA; padding: 0 10px;">
+                        <option value="" disabled selected>Loading keys...</option>
+                     </select>
+                    <button id="btn-decrypt" style="margin-bottom: 0; flex: 1;">Decrypt</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <label>Output</label>
+                <div id="output-area"></div>
+                <button id="btn-copy" style="margin-top: 1rem;">Copy to Clipboard</button>
+            </div>
+        </section>
+
+        <!-- Key Management -->
+        <section id="keys-section" class="hidden">
+            <div class="card">
+                <h2>Generate New Key</h2>
+                <input type="text" id="gen-name" placeholder="Key Label (e.g. 'Work Comms')">
+                <input type="password" id="gen-passphrase" placeholder="Passphrase">
+                <button id="btn-generate">Generate ECC Key</button>
+            </div>
+
+            <div class="card">
+                <h2>Import Existing Key</h2>
+                <textarea id="import-key" rows="4" placeholder="Paste Private Key Block..."></textarea>
+                <input type="text" id="import-name" placeholder="Key Label (e.g. 'VIP Comms')">
+                <input type="password" id="import-passphrase" placeholder="Verify Passphrase">
+                <button id="btn-import">Import Key</button>
+            </div>
+
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h2 style="margin: 0;">Your Keychain</h2>
+                    <button id="btn-refresh-keys" class="secondary" style="width: auto; margin-bottom: 0; padding: 0.4rem 0.8rem; font-size: 0.85rem;">Refresh</button>
+                </div>
+                <div id="key-list"></div>
+            </div>
+        </section>
+
+        <!-- Settings -->
+        <section id="settings-section" class="hidden">
+            <div class="card">
+                <h2>About</h2>
+                <p>Susurro is a client-side PGP tool.</p>
+                <p>Version: 1.0.0</p>
+            </div>
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h2 style="margin: 0;">Storage</h2>
+                    <span id="storage-count" style="color: var(--secondary-color); font-size: 0.9rem; font-weight: 500;"></span>
+                </div>
+                <button id="btn-wipe" style="background-color: var(--error-color); color: #fff; margin-bottom: 0;">Wipe All Data</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Logic -->
+    <script src="js/storage.js"></script>
+    <script src="js/crypto.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
