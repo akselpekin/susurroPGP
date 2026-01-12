@@ -1,4 +1,4 @@
-![susurroPGP icon](assets/icons/icon-1024x1024.png)
+<img src="assets/icons/icon-1024x1024.png" width="512" alt="susurroPGP icon">
 
 # susurroPGP
 
