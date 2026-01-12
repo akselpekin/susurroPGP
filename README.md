@@ -2,7 +2,7 @@
 
 # susurroPGP
 
-**susurro** is anrogressive Web App (PWA) for PGP encryption. it operates entirely client-side to ensure your private keys and messages never leave your device.
+**susurro** is an progressive Web App (PWA) for PGP encryption. it operates entirely client-side to ensure your private keys and messages never leave your device.
 
 ## Features
 
