@@ -15,7 +15,6 @@ class UI {
             this.appModeBadge.textContent = 'Guest Mode (Ephemeral)';
             this.appModeBadge.classList.add('mode-guest');
             this.appModeBadge.dataset.tooltip = 'Private keys are stored in RAM only and will be wiped instantly when you close this tab.';
-            // Show install banner logic if desired
         } else {
             this.appModeBadge.textContent = 'Master Mode (Persisted)';
             this.appModeBadge.classList.add('mode-master');
@@ -28,11 +27,9 @@ class UI {
             tab.addEventListener('click', () => {
                 const targetId = tab.dataset.target;
                 
-                // Update tabs
                 this.tabs.forEach(t => t.classList.remove('active'));
                 tab.classList.add('active');
 
-                // Update sections
                 this.sections.forEach(sec => {
                     if (sec.id === targetId) {
                         sec.classList.remove('hidden');
@@ -47,18 +44,16 @@ class UI {
     showStatus(message, type = 'info') {
         if (!this.statusElement) return;
         
-        // Update text
         this.statusElement.textContent = message;
-        this.statusElement.className = ''; // Reset classes
+        this.statusElement.className = '';
         this.statusElement.classList.add('visible');
         
         if (type === 'error') {
-            this.statusElement.style.backgroundColor = 'rgba(255, 59, 48, 0.95)'; // System Red
+            this.statusElement.style.backgroundColor = 'rgba(255, 59, 48, 0.95)';
         } else {
-             this.statusElement.style.backgroundColor = 'rgba(30, 30, 30, 0.95)'; // Default Dark
+             this.statusElement.style.backgroundColor = 'rgba(30, 30, 30, 0.95)';
         }
 
-        // Hide after 3 seconds
         if (this.statusTimeout) clearTimeout(this.statusTimeout);
         this.statusTimeout = setTimeout(() => {
             this.statusElement.classList.remove('visible');
@@ -79,7 +74,6 @@ class UI {
             div.style.padding = '1rem 0';
             div.style.borderBottom = '1px solid var(--border-color)';
             
-            // Key Header
             const header = document.createElement('div');
             header.style.marginBottom = '0.75rem';
             header.style.display = 'flex';
@@ -94,7 +88,6 @@ class UI {
             const dateSpan = document.createElement('span');
             dateSpan.style.fontSize = '0.8rem';
             dateSpan.style.color = 'var(--secondary-color)';
-            // Try to format the ID as date if it's a timestamp
             try {
                 const date = new Date(parseInt(key.id));
                 if (!isNaN(date.getTime())) {
@@ -106,16 +99,14 @@ class UI {
             header.appendChild(dateSpan);
             div.appendChild(header);
 
-            // Public Key Field
             const textarea = document.createElement('textarea');
             textarea.readOnly = true;
             textarea.rows = 3;
             textarea.value = key.publicKey;
             textarea.style.marginBottom = '0.5rem';
-            textarea.style.fontSize = '0.8rem'; // Smaller font for the key block
+            textarea.style.fontSize = '0.8rem';
             div.appendChild(textarea);
 
-            // Actions
             const btnRow = document.createElement('div');
             btnRow.style.display = 'flex';
             btnRow.style.gap = '10px';
@@ -140,7 +131,6 @@ class UI {
             exportBtn.style.marginBottom = '0';
             exportBtn.style.padding = '0.6rem';
             exportBtn.style.flex = '1';
-            // Warning color text?
             exportBtn.style.color = '#fff'; 
             exportBtn.style.backgroundColor = '#f59f00';
             exportBtn.onclick = () => {
@@ -150,7 +140,6 @@ class UI {
                          const url = URL.createObjectURL(blob);
                          const a = document.createElement('a');
                          a.href = url;
-                         // Sanitize filename
                          const safeName = (key.name || 'key').replace(/[^a-z0-9]/gi, '_').toLowerCase();
                          a.download = `${safeName}_secret.txt`;
                          document.body.appendChild(a);
@@ -196,7 +185,6 @@ class UI {
         const select = document.getElementById('decrypt-key-select');
         if (!select) return;
         
-        // Save current selection if exists
         const currentVal = select.value;
 
         select.innerHTML = '';
@@ -216,7 +204,6 @@ class UI {
             select.appendChild(option);
         });
 
-        // Restore selection if possible, otherwise select first
         if (currentVal && keys.find(k => k.id === currentVal)) {
             select.value = currentVal;
         } else if (keys.length > 0) {
