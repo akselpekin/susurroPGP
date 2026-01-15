@@ -31,4 +31,4 @@ susurroPGP adapts to how you access it:
 
 This software is provided "as is", without warranty of any kind. While it uses the industry-standard OpenPGP.js library, end-user security also depends on the safety of the device and browser used. 
 
-**Always back up your private keys.** If you clear your browser data while in "Master Mode", your keys will be lost unless you have exported them.
+**Always back up your private keys.** If you clear your browser data your keys will be lost unless you have exported them.
