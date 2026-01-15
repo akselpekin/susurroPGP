@@ -14,7 +14,7 @@ class UI {
         if (mode === 'guest') {
             this.appModeBadge.textContent = 'Guest Mode (Ephemeral)';
             this.appModeBadge.classList.add('mode-guest');
-            this.appModeBadge.dataset.tooltip = 'Private keys are stored in RAM only and will be wiped instantly when you close this tab.';
+            this.appModeBadge.dataset.tooltip = 'Private keys are stored in RAM only and will be wiped instantly when you close this tab. In order to switch to Master Mode, install the webpage as a Progressive Web App (PWA).';
         } else {
             this.appModeBadge.textContent = 'Master Mode (Persisted)';
             this.appModeBadge.classList.add('mode-master');
