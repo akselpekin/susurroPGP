@@ -42,25 +42,25 @@
                 <label for="recipient-key">Recipient Public Key</label>
                 <textarea id="recipient-key" rows="3" placeholder="Public Key here..."></textarea>
 
-                <div style="display: flex; gap: 10px; margin-bottom: 1rem;">
-                    <button id="btn-encrypt" style="margin-bottom: 0;">Encrypt</button>
+                <div class="flex-row mb-1">
+                    <button id="btn-encrypt" class="mb-0">Encrypt</button>
                 </div>
                 
-                <div style="height: 1px; background-color: var(--border-color); margin: 1.5rem 0;"></div>
+                <div class="separator"></div>
 
                 <label for="decrypt-key-select">Decrypt using Private Key</label>
-                <div style="display: flex; gap: 10px;">
-                     <select id="decrypt-key-select" style="flex: 2; margin-bottom: 0px; border-radius: 10px; border: 1px solid var(--border-color); background-color: #F8F8FA; padding: 0 10px;">
+                <div class="flex-row">
+                     <select id="decrypt-key-select" class="flex-2 mb-0">
                         <option value="" disabled selected>Loading keys...</option>
                      </select>
-                    <button id="btn-decrypt" style="margin-bottom: 0; flex: 1;">Decrypt</button>
+                    <button id="btn-decrypt" class="mb-0 flex-1">Decrypt</button>
                 </div>
             </div>
 
             <div class="card">
                 <label>Output</label>
                 <div id="output-area"></div>
-                <button id="btn-copy" style="margin-top: 1rem;">Copy to Clipboard</button>
+                <button id="btn-copy" class="mt-1">Copy to Clipboard</button>
             </div>
         </section>
 
@@ -82,9 +82,9 @@
             </div>
 
             <div class="card">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                    <h2 style="margin: 0;">Your Keychain</h2>
-                    <button id="btn-refresh-keys" class="secondary" style="width: auto; margin-bottom: 0; padding: 0.4rem 0.8rem; font-size: 0.85rem;">Refresh</button>
+                <div class="flex-between mb-1">
+                    <h2 class="mb-0">Your Keychain</h2>
+                    <button id="btn-refresh-keys" class="secondary w-auto mb-0" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">Refresh</button>
                 </div>
                 <div id="key-list"></div>
             </div>
@@ -95,14 +95,14 @@
             <div class="card">
                 <h2>About</h2>
                 <p>Susurro is a client-side PGP tool.</p>
-                <p>Version: 1.0.0</p>
+                <p>Version: 1.0.1</p>
             </div>
             <div class="card">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                    <h2 style="margin: 0;">Storage</h2>
-                    <span id="storage-count" style="color: var(--secondary-color); font-size: 0.9rem; font-weight: 500;"></span>
+                <div class="flex-between mb-1">
+                    <h2 class="mb-0">Storage</h2>
+                    <span id="storage-count" class="text-secondary font-medium" style="font-size: 0.9rem;"></span>
                 </div>
-                <button id="btn-wipe" style="background-color: var(--error-color); color: #fff; margin-bottom: 0;">Wipe All Data</button>
+                <button id="btn-wipe" class="bg-error mb-0">Wipe All Data</button>
             </div>
         </section>
     </main>

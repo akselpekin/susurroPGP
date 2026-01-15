@@ -49,9 +49,9 @@ class UI {
         this.statusElement.classList.add('visible');
         
         if (type === 'error') {
-            this.statusElement.style.backgroundColor = 'rgba(255, 59, 48, 0.95)';
+            this.statusElement.classList.add('status-error');
         } else {
-             this.statusElement.style.backgroundColor = 'rgba(30, 30, 30, 0.95)';
+             this.statusElement.classList.add('status-info');
         }
 
         if (this.statusTimeout) clearTimeout(this.statusTimeout);
@@ -64,30 +64,26 @@ class UI {
         const container = document.getElementById(containerId);
         container.innerHTML = '';
         if (keys.length === 0) {
-            container.innerHTML = '<p style="text-align:center; color:var(--secondary-color);">No keys found.</p>';
+            const p = document.createElement('p');
+            p.textContent = 'No keys found.';
+            p.className = 'text-secondary text-center';
+            container.appendChild(p);
             return;
         }
         
         keys.forEach(key => {
             const div = document.createElement('div');
             div.className = 'key-item';
-            div.style.padding = '1rem 0';
-            div.style.borderBottom = '1px solid var(--border-color)';
             
             const header = document.createElement('div');
-            header.style.marginBottom = '0.75rem';
-            header.style.display = 'flex';
-            header.style.justifyContent = 'space-between';
-            header.style.alignItems = 'center';
+            header.className = 'key-header';
 
             const nameSpan = document.createElement('span');
-            nameSpan.style.fontWeight = '600';
-            nameSpan.style.fontSize = '1.05rem';
+            nameSpan.className = 'key-name';
             nameSpan.textContent = key.name || 'Unnamed Key';
 
             const dateSpan = document.createElement('span');
-            dateSpan.style.fontSize = '0.8rem';
-            dateSpan.style.color = 'var(--secondary-color)';
+            dateSpan.className = 'key-date';
             try {
                 const date = new Date(parseInt(key.id));
                 if (!isNaN(date.getTime())) {
@@ -103,22 +99,15 @@ class UI {
             textarea.readOnly = true;
             textarea.rows = 3;
             textarea.value = key.publicKey;
-            textarea.style.marginBottom = '0.5rem';
-            textarea.style.fontSize = '0.8rem';
+            textarea.className = 'key-public-key';
             div.appendChild(textarea);
 
             const btnRow = document.createElement('div');
-            btnRow.style.display = 'flex';
-            btnRow.style.gap = '10px';
+            btnRow.className = 'key-actions';
 
             const copyBtn = document.createElement('button');
             copyBtn.textContent = 'Copy Public';
-            copyBtn.className = 'secondary';
-            copyBtn.style.marginBottom = '0';
-            copyBtn.style.padding = '0.6rem';
-            copyBtn.style.flex = '1';
-            copyBtn.style.color = '#fff'; 
-            copyBtn.style.backgroundColor = 'var(--primary-color)';
+            copyBtn.className = 'button btn-small mb-0 btn-copy-public';
             copyBtn.onclick = () => {
                 navigator.clipboard.writeText(key.publicKey).then(() => {
                     this.showStatus('Public Key copied to clipboard');
@@ -127,12 +116,7 @@ class UI {
             
             const exportBtn = document.createElement('button');
             exportBtn.textContent = 'Export Secret';
-            exportBtn.className = 'secondary';
-            exportBtn.style.marginBottom = '0';
-            exportBtn.style.padding = '0.6rem';
-            exportBtn.style.flex = '1';
-            exportBtn.style.color = '#fff'; 
-            exportBtn.style.backgroundColor = '#f59f00';
+            exportBtn.className = 'attention btn-small mb-0 btn-export-secret';
             exportBtn.onclick = () => {
                 if(confirm('WARNING: You are about to export your PRIVATE key.\n\nAnyone with this file and your passphrase can impersonate you.\n\nDo you want to download the key file?')) {
                      try {
@@ -155,12 +139,7 @@ class UI {
             };
             
             const deleteBtn = document.createElement('button');
-            deleteBtn.className = 'secondary';
-            deleteBtn.style.marginBottom = '0';
-            deleteBtn.style.padding = '0.6rem';
-            deleteBtn.style.flex = '1';
-            deleteBtn.style.color = '#fff';
-            deleteBtn.style.backgroundColor = 'var(--error-color)';
+            deleteBtn.className = 'dangerous btn-small mb-0 btn-delete-key';
             deleteBtn.innerHTML = `
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: middle;">
             <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>

@@ -148,6 +148,16 @@ button.secondary {
     color: #000;
 }
 
+button.attention {
+    background-color: #f59f00;
+    color: #fff;
+}
+
+button.dangerous {
+    background-color: #FF3B30;
+    color: #fff;
+}
+
 button.secondary:hover {
     background-color: #D1D1D6;
 }
@@ -198,6 +208,128 @@ label {
     min-height: 100px;
 }
 
+/* Utilities */
+.flex-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mb-0 {
+    margin-bottom: 0 !important;
+}
+
+.mb-1 {
+    margin-bottom: 1rem;
+}
+
+.mt-1 {
+    margin-top: 1rem;
+}
+
+.w-auto {
+    width: auto;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.flex-2 {
+    flex: 2;
+}
+
+.text-secondary {
+    color: var(--secondary-color);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.font-medium {
+    font-weight: 500;
+}
+
+.separator {
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 1.5rem 0;
+}
+
+.status-error {
+    background-color: rgba(255, 59, 48, 0.95) !important;
+}
+
+.status-info {
+    background-color: rgba(30, 30, 30, 0.95) !important;
+}
+
+.key-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.key-header {
+    margin-bottom: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.key-name {
+    font-weight: 600;
+    font-size: 1.05rem;
+}
+
+.key-date {
+    font-size: 0.8rem;
+    color: var(--secondary-color);
+}
+
+.key-public-key {
+    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.key-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-small {
+    padding: 0.6rem;
+    flex: 1;
+}
+
+.bg-warning {
+    background-color: #f59f00;
+    color: #fff;
+}
+
+.bg-error {
+    background-color: var(--error-color);
+    color: #fff;
+}
+
+select {
+    width: 100%;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background-color: #F8F8FA;
+    padding: 0 10px;
+    height: 42px;
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
 .key-item {
     font-size: 0.9rem;
     padding: 0.75rem 0;
@@ -208,7 +340,6 @@ label {
     border-bottom: none;
 }
 
-/* Tooltip for Mode Badge */
 .mode-badge {
     position: relative;
     cursor: help;
@@ -232,14 +363,12 @@ label {
     z-index: 1000;
     letter-spacing: 0;
     
-    /* Animation */
     opacity: 0;
     visibility: hidden;
     transform: translateY(-5px);
     transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
     pointer-events: none;
     
-    /* Glass effect */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
@@ -251,7 +380,6 @@ label {
     transform: translateY(0);
 }
 
-/* Tooltip Arrow */
 .mode-badge::before {
     content: '';
     position: absolute;
@@ -273,7 +401,6 @@ label {
     transform: translateY(0);
 }
 
-/* Toast Notification */
 #status-message {
     position: fixed;
     bottom: 2rem;
